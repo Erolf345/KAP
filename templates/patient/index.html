@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-8">
+         <p>
+            <div class="float-left"><h3>List of {{title}}</h3></div>
+            {% if request.ad == 'Admin' %}
+            <a class="btn btn-success float-right" href="{%  url 'patient_add' %}">Add employee</a>
+            {% endif %}
+        </p>
+        <div class="table-responsive-sm">
+        {% if users %}
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <th scope="row">
+                            {{user.first_name}} {{user.last_name}}
+                            <span class="badge badge-default">{{user.email}}</span>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="{%  url 'patient_details' user.id %}">Details</a>
+                            <a class="btn btn-primary" href="{%  url 'patient_edit' user.id %}">Edit</a>
+                            <a class="btn btn-primary" href="{%  url 'patient_delete' user.id %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        {% else %}
+            <p>There is no patient available.</p>
+        {% endif %}
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <p><h3>Recent Surveys</h3></p>
+        {% if questions %}
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>Survey</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <th scope="row">
+                            <a class="" href="{% url 'question_content' question.id %}">{{ question.title }}</a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="{% url 'survey_details' question.id %}">Details</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>There is no question available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <p>
+    <h3>List of {{ title }}</h3>
+    </p>
+
+    <div class="table-responsive-sm">
+        {% if questions %}
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th>Survey</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for question in questions %}
+                    <tr>
+                        <th scope="row">
+                            <a class="" href="{% url 'question_content' question.id %}">{{ question.title }}</a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="{% url 'survey_details' question.id %}">Details</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>There is no question available.</p>
+        {% endif %}
+    </div>
+{% endblock content %}
