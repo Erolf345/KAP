@@ -2,7 +2,13 @@
 
 {% block content %}
 <div>
-        <div class="float-left"><h3>List of {{title}}</h3></div>
+        <p>
+                <div class="float-left">
+                        <h3>List of {{title}}</h3>
+                </div>
+                <button type="submit"  onclick="location.href = '/appointments/create';" class="btn btn-success float-right">Neuer Termin</button>
+               
+        </p>
         {% if appointments %}
             <table class="table table-bordered">
                 <thead class="thead-light">
@@ -16,9 +22,9 @@
                     <tr>
                         <th scope="row">
                             {{appointment.date}}
-                        </td>
+                        </th>
                         <td class="text-center">
-                            {% if appointment.name != None %}
+                            {% if appointment.title != None %}
                             <a class="btn btn-primary" href="{%  url 'appointments:detail' appointment.id %}">Details</a>
                             <a class="btn btn-primary" href="{%  url 'appointments:edit' appointment.id %}">Edit</a>
                             <a class="btn btn-primary" href="{%  url 'appointments:delete' appointment.id %}">Delete</a>
@@ -29,7 +35,7 @@
                 </tbody>
                 </table>
         {% else %}
-            <p>There are no current Appointments.</p>
+            <br><br><p>There are no current Appointments.</p>
         {% endif %}
 
 

@@ -3,7 +3,7 @@ from .models import Appointment
 
 
 class AppointmentModelAdmin(admin.ModelAdmin):
-	list_display = ["name", "date", "user"]
+	list_display = ["title", "date", "user"]
 	#list_editable = ["title"]
 	list_filter = ["date", "user"]
 	#search_fields = ["user"]
