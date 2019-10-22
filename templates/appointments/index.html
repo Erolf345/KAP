@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Appointments</title>
+    </head>
+    <body>
+        <h1> {{ content }} </h1>
+        <h2>{% for obj in appointments%}
+            <a href='{{obj.get_absolute_url}}'>{{obj.name}}</a><br>
+                {{obj.user}}<br>
+                {{obj.date}}<br>
+                {{obj.comment}}<br><br>
+        {% endfor %}
+        </h2>
+    </body>
+</html>

@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('patient/', include('patient.urls')),
     path('survey/', include('survey.urls')),
+    path('appointments/',include(('appointments.urls','appointments'),namespace='appointments')),    
 
     path('login/', user_login, name="user_login"),
     path('success/', success, name="user_success"),
