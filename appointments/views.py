@@ -30,7 +30,8 @@ def appointment_create(request):
     
 def appointment_detail(request,id=None):
     instance = get_object_or_404(Appointment,id=id)
-    removeSensitiveAppointment(request,instance)
+    if request.user != instance.user:
+        return HttpResponse('Unauthorized', status=401)
     context = {
         "content": str(instance.name)
     }
@@ -47,10 +48,15 @@ def appointment_list(request):
 
 def appointment_edit(request, id=None):
     instance = get_object_or_404(Appointment,id=id)
-    removeSensitiveAppointment(request,instance)
+    if request.user != instance.user:
+        return HttpResponse('Unauthorized', status=401)
     context = {
         "content": str(instance.name)
     }
     return render(request,"appointments/details.html",context)
+
 def appointment_delete(request, id=None):
+    instance = get_object_or_404(Appointment,id=id)
+    if request.user != instance.user:
+        return HttpResponse('Unauthorized', status=401)
     return HttpResponse("<h1>Delete</h1>")
