@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 from .models import Appointment
 
 def removeSensitiveAppointment(request, appointment):
+    print(request.user)
+    print(appointment.user)
     if request.user != appointment.user:
             print("1")
             appointment.user = None
@@ -38,13 +40,17 @@ def appointment_list(request):
     queryset = Appointment.objects.all()
     removeSensitiveData(request,queryset)
     context = {
+        "title":"Appointments",
         "appointments": queryset,
-        "content": "List of appointments"
     }
     return render(request,"appointments/index.html",context)
 
-def appointment_update(request):
-    return HttpResponse("<h1>Update</h1>")
-
-def appointment_delete(request):
+def appointment_edit(request, id=None):
+    instance = get_object_or_404(Appointment,id=id)
+    removeSensitiveAppointment(request,instance)
+    context = {
+        "content": str(instance.name)
+    }
+    return render(request,"appointments/details.html",context)
+def appointment_delete(request, id=None):
     return HttpResponse("<h1>Delete</h1>")

@@ -2,14 +2,36 @@
 
 {% block content %}
 <div>
-        <h2> List of Appointments </h2>
-        <h3>
-                {% for obj in appointments%}
-                <a href='{{obj.get_absolute_url}}'>{{obj.name}}</a><br>
-                {{obj.user}}<br>
-                {{obj.date}}<br>
-                {{obj.comment}}<br><br>
+        <div class="float-left"><h3>List of {{title}}</h3></div>
+        {% if appointments %}
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Appointment</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <th scope="row">
+                            {{appointment.date}}
+                        </td>
+                        <td class="text-center">
+                            {% if appointment.name != None %}
+                            <a class="btn btn-primary" href="{%  url 'appointments:detail' appointment.id %}">Details</a>
+                            <a class="btn btn-primary" href="{%  url 'appointments:edit' appointment.id %}">Edit</a>
+                            <a class="btn btn-primary" href="{%  url 'appointments:delete' appointment.id %}">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
-        </h3>
+                </tbody>
+                </table>
+        {% else %}
+            <p>There are no current Appointments.</p>
+        {% endif %}
+
+
 </div>
 {% endblock content %}
