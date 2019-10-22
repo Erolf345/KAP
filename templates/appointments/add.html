@@ -4,29 +4,19 @@
 {% block content %}
 
 
-
-<form method="POST">
-{% csrf_token %}
-{{form.as_p}}
-<button type="submit" class="btn btn-primary">Abschicken</button>
-</form>
-
-<br><br><br><br><br><br><br><br><br><br><br>
-    <form method="POST">
+<p>
+        <div class="float-left">
+                <h3>Neuen Termin erstellen</h3>
+        </div>       
+</p>
+<br><br>
+<p>
+    <div>
+        <form method="POST">
             {% csrf_token %}
-            <div class="form-group">
-              <label for="titelInput">Titel</label>
-              <input type="text" class="form-control" id="titelInput" maxlength="50" placeholder="" required>
-            </div>
-            <div class="mb-3">
-                    <label for="commentInput">Kommentar</label>
-                    <textarea class="form-control" id="commentInput" maxlength="200" placeholder="" ></textarea>
-                  </div>
-            <div class="form-group">
-                    <label for="fileInput">Dateien hochladen</label>
-                    <input type="file" class="form-control-file" id="fileInpuit">
-            </div>
+            {{form.as_p}}
             <button type="submit" class="btn btn-primary">Abschicken</button>
-          </form>
-
+        </form>
+    </div>
+</p>
 {% endblock content %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 # Create your views here.
 from .models import Appointment
 from .forms import AppointmentForm
@@ -29,6 +29,7 @@ def appointment_create(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
+            return redirect('/appointments')
         
         context = {
         "form": form,
