@@ -1,5 +1,5 @@
 #Probably a good idea to not sync the database
-db.sqlite3
+/db.sqlite3
 
 #Ignore all pycaches
 __pycache__/
