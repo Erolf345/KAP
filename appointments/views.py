@@ -4,6 +4,23 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 from .models import Appointment
 
+def removeSensitiveAppointment(request, appointment):
+    print(request.user)
+    print(appointment.user)
+    
+    if request.user != appointment.user:
+            print("1")
+            appointment.user = None
+            appointment.name = None
+            appointment.comment = None
+            appointment.files = 0
+            appointment.timestamp = None
+    return appointment
+
+def removeSensitiveData(request,queryset):
+    for appointment in queryset:
+        appointment = removeSensitiveAppointment(request, appointment)
+
 def appointment_create(request):
     if request.user.is_authenticated:
         context = {
@@ -15,6 +32,7 @@ def appointment_create(request):
     
 def appointment_detail(request,id=None):
     instance = get_object_or_404(Appointment,id=id)
+    instance = removeSensitiveAppointment(instance, request)
     context = {
         "content": str(instance.name)
     }
@@ -22,9 +40,10 @@ def appointment_detail(request,id=None):
 
 def appointment_list(request):
     queryset = Appointment.objects.all()
+    removeSensitiveData(request,queryset)
     context = {
         "appointments": queryset,
-        "content": "List"
+        "content": "List of appointments"
     }
     return render(request,"appointments/index.html",context)
 
