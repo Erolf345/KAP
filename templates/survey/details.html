@@ -7,7 +7,7 @@
     </p>
     <div class="list-group col-md-6">
     {% for choice in question.choices %}
-        <a class="list-group-item" href="{% url 'question_content' question.id %}">
+        <a class="list-group-item" href="{% url 'survey:question_content' question.id %}">
             <span class="badge badge-pill badge-primary float-right">{{choice.votes}}</span>
             {{choice.text}}
         </a>

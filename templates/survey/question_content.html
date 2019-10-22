@@ -5,7 +5,7 @@
     <p>
         <h3>{{question.title}}</h3>
     </p>
-    <form method="POST" action="{% url 'question_content' question.id %}">
+    <form method="POST" action="{% url 'survey:question_content' question.id %}">
         {% csrf_token %}
     {% for choice in question.choices %}
         <div class="radio">

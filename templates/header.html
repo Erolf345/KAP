@@ -12,12 +12,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'patient_list' %}">
+                <a class="nav-link" href="{% url 'patient:list' %}">
                     {{ "patient" | capfirst }}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'survey_list' %}">
+                <a class="nav-link" href="{% url 'survey:survey_list' %}">
                     {{ "Survey" | capfirst }}
                     <span class="badge badge-primary badge-pill ">{{ survey_count }}</span>
                 </a>

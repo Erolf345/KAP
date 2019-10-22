@@ -19,10 +19,10 @@
                 {% for question in questions %}
                     <tr>
                         <th scope="row">
-                            <a class="" href="{% url 'question_content' question.id %}">{{ question.title }}</a>
+                            <a class="" href="{% url 'survey:question_content' question.id %}">{{ question.title }}</a>
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-primary" href="{% url 'survey_details' question.id %}">Details</a>
+                            <a class="btn btn-primary" href="{% url 'survey:survey_details' question.id %}">Details</a>
                         </td>
                     </tr>
                 {% endfor %}

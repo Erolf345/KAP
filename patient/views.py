@@ -17,7 +17,7 @@ def user_login(request):
             login(request, user)
             if request.GET.get('next', None):
                 return HttpResponseRedirect(request.GET['next'])
-            return HttpResponseRedirect(reverse('patient_list'))
+            return HttpResponseRedirect(reverse('patient:list'))
         else:
             context['error'] = "Provide valid credentials"
             return render(request, "auth/login.html", context)
@@ -62,7 +62,7 @@ def patient_add(request):
         context['user_form'] = user_form
         if user_form.is_valid():
             u = user_form.save()
-            return HttpResponseRedirect(reverse('patient_list'))
+            return HttpResponseRedirect(reverse('patient:list'))
         else:
             return render(request, 'patient/add.html', context)
     else:
@@ -80,7 +80,7 @@ def patient_edit(request, id=None):
         context['user_form'] = user_form
         if user_form.is_valid():
             user_form.save()
-            return HttpResponseRedirect(reverse('patient_list'))
+            return HttpResponseRedirect(reverse('patient:list'))
         else:
             return render(request, 'patient/edit.html', context)
     else:
@@ -95,7 +95,7 @@ def patient_delete(request, id=None):
     user = get_object_or_404(User, id=id)
     if request.method == "POST":
         user.delete()
-        return HttpResponseRedirect(reverse('patient_list'))
+        return HttpResponseRedirect(reverse('patient:list'))
     else:
         context = {}
         context['user'] = user

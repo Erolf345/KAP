@@ -7,7 +7,7 @@
          <p>
             <div class="float-left"><h3>List of {{title}}</h3></div>
             {% if request.ad == 'Admin' %}
-            <a class="btn btn-success float-right" href="{%  url 'patient_add' %}">Add employee</a>
+            <a class="btn btn-success float-right" href="{%  url 'patient:add' %}">Add employee</a>
             {% endif %}
         </p>
         <div class="table-responsive-sm">
@@ -27,9 +27,9 @@
                             <span class="badge badge-default">{{user.email}}</span>
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-primary" href="{%  url 'patient_details' user.id %}">Details</a>
-                            <a class="btn btn-primary" href="{%  url 'patient_edit' user.id %}">Edit</a>
-                            <a class="btn btn-primary" href="{%  url 'patient_delete' user.id %}">Delete</a>
+                            <a class="btn btn-primary" href="{%  url 'patient:details' user.id %}">Details</a>
+                            <a class="btn btn-primary" href="{%  url 'patient:edit' user.id %}">Edit</a>
+                            <a class="btn btn-primary" href="{%  url 'patient:delete' user.id %}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
