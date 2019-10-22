@@ -1,10 +1,7 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <head>
-        <title>Appointments</title>
-    </head>
-    <body>
+
+{% block content %}
         <h1> {{ content }} </h1>
         <h2>{% for obj in appointments%}
             <a href='{{obj.get_absolute_url}}'>{{obj.name}}</a><br>
@@ -13,5 +10,4 @@
                 {{obj.comment}}<br><br>
         {% endfor %}
         </h2>
-    </body>
-</html>
+{% endblock content %}
