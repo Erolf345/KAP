@@ -5,9 +5,6 @@ from django.shortcuts import get_object_or_404
 from .models import Appointment
 
 def removeSensitiveAppointment(request, appointment):
-    print(request.user)
-    print(appointment.user)
-    
     if request.user != appointment.user:
             print("1")
             appointment.user = None
@@ -15,11 +12,10 @@ def removeSensitiveAppointment(request, appointment):
             appointment.comment = None
             appointment.files = 0
             appointment.timestamp = None
-    return appointment
 
 def removeSensitiveData(request,queryset):
     for appointment in queryset:
-        appointment = removeSensitiveAppointment(request, appointment)
+        removeSensitiveAppointment(request, appointment)
 
 def appointment_create(request):
     if request.user.is_authenticated:
@@ -32,7 +28,7 @@ def appointment_create(request):
     
 def appointment_detail(request,id=None):
     instance = get_object_or_404(Appointment,id=id)
-    instance = removeSensitiveAppointment(instance, request)
+    removeSensitiveAppointment(request,instance)
     context = {
         "content": str(instance.name)
     }
